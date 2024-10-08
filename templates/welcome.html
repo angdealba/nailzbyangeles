@@ -1,0 +1,21 @@
+{%extends "layout.html"%}
+{%block content%}
+
+<body>
+    <div class = "mainpic">
+        <img src = "{{ url_for('static', filename='images/1.png') }}">
+    </div>
+    <div>
+        <img src = "{{ url_for('static', filename='images/2.png') }}">
+    </div>
+    <div>
+        <img src = "{{ url_for('static', filename='images/3.png') }}">
+    </div>
+    <div>
+        <img src = "{{ url_for('static', filename='images/4.png') }}">
+    </div>
+
+
+</body>
+</html>
+{% endblock %}
