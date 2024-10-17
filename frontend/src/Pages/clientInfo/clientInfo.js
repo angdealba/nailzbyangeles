@@ -1,12 +1,9 @@
 import "./clientInfo.css";
-import { useLocation } from "react-router-dom";
 import {useState} from "react";
 import PhoneInput from 'react-phone-number-input';
 import "react-phone-number-input/style.css";
 
 export default function ClientInfo(){
-    const location = useLocation();
-    const { service, length, price } = location.state || {};
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [phone, setPhone] = useState('');
@@ -14,8 +11,11 @@ export default function ClientInfo(){
     const [instagram, setInstagram] = useState('@');
     const [silentAppt, setSilentAppt] = useState(false);
 
+    
+
     function handleSubmit(e){
         e.preventDefault();
+
     }
 
     return (
