@@ -21,11 +21,14 @@ export default function ClientInfo(){
     return (
         <>
             <div className="container">
-                <div className="h5">{service}  ({length}) - ${price}</div>
+                <div className="h5">{sessionStorage.getItem("service")}
+                    ({sessionStorage.getItem("length")}) -
+                    ${sessionStorage.getItem("price")}</div>
+                <div className="h6">On {sessionStorage.getItem("date")}</div>
                 <form method="post" onSubmit={handleSubmit}>
                     <div><label> First Name: <input id="firstName" autoComplete="given-name" onChange={e => setFirstName(e.target.value)}></input></label></div>
                     <div><label> Last Name: <input id="lastName" autoComplete="family-name" onChange={e => setLastName(e.target.value)}></input></label></div>
-                    <div><label> Phone: <PhoneInput id="phone" auto defaultCountry="US" onChange={(phone) => setPhone(phone)}></PhoneInput></label></div>
+                    <div><label> Phone: <PhoneInput id="phone" defaultCountry="US" onChange={(phone) => setPhone(phone)}></PhoneInput></label></div>
                     <div><label> Email: <input id="email" autoComplete="email" onChange={e => setEmail(e.target.value)}></input></label></div>
                     <div><label> Your Instagram: <input id="instagram" autoComplete="username" value ={instagram} onChange={e => setInstagram(e.target.value)}></input></label></div>
                     <div><label>Would you prefer a silent appointment? <input type="checkbox" id="silentAppt" defaultChecked={false} />Yes</label></div>
