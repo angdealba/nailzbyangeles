@@ -1,23 +1,16 @@
 import Accordion from 'react-bootstrap/Accordion';
-import { useAccordionButton } from 'react-bootstrap/AccordionButton';
-import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./services.css";
 import {useNavigate} from "react-router-dom";
-import react, {useState} from "react";
 
 export default function Services() {
     const navigate = useNavigate();
-    const [length, setLength] = useState(null);
-    const [service, setService] = useState(null);
-    const [price, setPrice] = useState(null);
-    const prices = [ [40, 50, 60, 65],[null],[40, 50, 60, 65],[40, 50, 60, 65],[null],[35],[20]];
 
-    function handleSelect(selectedService, selectedLen, selectedPrice){
-        setService(selectedService);
-        setLength(selectedLen)
-        setPrice(selectedPrice);
-        navigate("/appointment", {state: {service: selectedService, length: selectedLen, price: selectedPrice}})
+    function handleSelect(service, length, price){
+        sessionStorage.setItem('service', service);
+        sessionStorage.setItem('length', length);
+        sessionStorage.setItem('price', price);
+        navigate("/appointment");
     }
 
     return (
