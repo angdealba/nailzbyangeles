@@ -11,6 +11,11 @@ const getAppointments = asyncHandler (async (req, res) => {
 // @desc create Appointment
 // @route POST /api/appointments
 const createAppointment = asyncHandler (async (req, res) => {
+
+    if(!req.body.text){
+        res.status(400)
+        throw new Error("Please add a text field")
+    }
     res.status(200).json({message: 'Create appointment'})
 })
 
