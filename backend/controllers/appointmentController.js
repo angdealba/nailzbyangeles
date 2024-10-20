@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler')
 const Appointments = require('../model/appointmentModel')
+const Clients = require('../model/clientModel')
 
 // @desc get Appointments
 // @route GET /api/appointments
@@ -12,11 +13,37 @@ const getAppointments = asyncHandler (async (req, res) => {
 // @route POST /api/appointments
 const createAppointment = asyncHandler (async (req, res) => {
 
-    if(!req.body.text){
+    const { client_id, service_id, date_time, confirmed, silent, details } = req.body
+    if(!client_id || !service_id || !date_time || silent === undefined){
         res.status(400)
-        throw new Error("Please add a text field")
+        throw new Error("Please add all fields")
     }
-    res.status(200).json({message: 'Create appointment'})
+
+    const appointment = await Appointments.create({client_id, service_id, date_time, confirmed, silent, details })
+    if (appointment) {
+        const client = await Clients.findByIdAndUpdate(client_id,
+            { $push: { appointments: appointment.id } }, // Add appointment ID to client's appointments array
+        );
+
+        if (!client) {
+            res.status(404);
+            throw new Error('Client not found');
+        }
+
+        res.status(201).json({
+            _id: appointment.id,
+            client_id: appointment.client_id,
+            service_id: appointment.service_id,
+            date_time: appointment.date_time,
+            confirmed: appointment.confirmed,
+            silent: appointment.silent,
+            details: appointment.details
+        })
+    } else {
+        res.status(400)
+        throw new Error('Invalid client data')
+    }
+
 })
 
 // @desc update existing Appointment
