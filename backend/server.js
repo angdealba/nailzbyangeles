@@ -8,7 +8,8 @@ const PORT = process.env.PORT;
 app.use(express.json())
 
 
-app.use('/api/appointments', require('./routes/appointmentRoutes'))
+app.use('/api/appointments', require('./routes/appointmentRoutes'));
+app.use('/api/clients', require('./routes/clientRoutes'));
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
