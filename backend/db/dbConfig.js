@@ -1,26 +1,14 @@
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://aid2121:nailzbyangeles@cluster0.vnxtb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const mongoose = require('mongoose')
 
-const client = new MongoClient(uri, {
-    serverApi: {
-        version: ServerApiVersion.v1,
-        strict: true,
-        deprecationErrors: true,
-    }
-});
-
-async function connectDB() {
+const connectDB = async () => {
     try {
-        await client.connect();
-        await client.db("admin").command({ ping: 1 });
-        console.log(
-            "Pinged your deployment. You successfully connected to MongoDB!"
-        );
-
-    } finally {
-        await client.close();
+        console.log(process.env.MONGO_URI)
+        const conn = await mongoose.connect(process.env.MONGO_URI)
+        console.log(`MongoDB Connected: ${conn.connection.host}`)
+    } catch (error) {
+        console.log(error)
+        process.exit(1)
     }
 }
-
 
 module.exports = connectDB
