@@ -2,6 +2,8 @@ import "./clientInfo.css";
 import {useState} from "react";
 import PhoneInput from 'react-phone-number-input';
 import "react-phone-number-input/style.css";
+import clientService from "../../Features/clientService";
+import appointmentService from "../../Features/appointmentService";
 
 export default function ClientInfo(){
     const [firstName, setFirstName] = useState('');
@@ -11,11 +13,37 @@ export default function ClientInfo(){
     const [instagram, setInstagram] = useState('@');
     const [silentAppt, setSilentAppt] = useState(false);
 
-    
-
-    function handleSubmit(e){
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const clientData = {
+            "first_name": firstName,
+            "last_name": lastName,
+            "email": email,
+            "phone": phone,
+            "instagram": instagram
+        }
+        try {
+            const client = await clientService.createClient(clientData);
+            console.log(`Client created successfully! ID: ${client._id}`);
+
+            const appointmentData = {
+                "client_id": client._id,
+                "service_id": client._id, //temporary,
+                "date_time": new Date(), //temporary
+                "confirmed": false,
+                "silent": silentAppt,
+                "details": "none"
+            }
+            try {
+                const appointment = await appointmentService.createAppointment(appointmentData);
+                console.log(`Appointment created successfully! ID: ${appointment._id}`);
+            } catch (error) {
+                console.error('Error creating appointment. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error creating client. Please try again.');
+        }
     }
 
     return (
