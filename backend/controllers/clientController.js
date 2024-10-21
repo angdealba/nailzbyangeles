@@ -12,9 +12,9 @@ const getClients = asyncHandler (async (req, res) => {
 // @route POST /api/clients
 const createClient = asyncHandler (async (req, res) => {
 
-    const { first, last, email, phone, instagram } = req.body
+    const { first_name, last_name, email, phone, instagram } = req.body
     console.log(req.body)
-    if(!first || !last || !email || !phone){
+    if(!first_name || !last_name || !email || !phone){
         res.status(400)
         throw new Error("Please add all fields")
     }
@@ -25,12 +25,12 @@ const createClient = asyncHandler (async (req, res) => {
         throw new Error("Client already exists")
     }
 
-    const client = await Clients.create({first, last, email, phone, instagram})
+    const client = await Clients.create({first_name, last_name, email, phone, instagram})
     if (client) {
         res.status(201).json({
             _id: client.id,
-            first_name: client.first,
-            last_name: client.last,
+            first_name: client.first_name,
+            last_name: client.last_name,
             email: client.email,
             phone: client.phone,
             instagram: client.instagram
