@@ -1,7 +1,57 @@
-.home{
-    margin-left: 20px;
-    margin-right: 20px;
-}
+
 .home img{
     width: 100%;
 }
+
+.book {
+    position: relative;
+    display: inline-block;
+}
+
+.book-btn {
+    position: absolute;
+    left: 65%;
+    top: 50%;
+    background-color: #fff9f3;
+    font-size: 16px;
+    padding: 10px 40px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    color: #303F3C;
+    box-shadow: 0 3px #a59a90;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.book-btn:hover {
+    background-color: #ffeadc;
+    color: #303F3C;
+}
+
+.book-btn span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.book-btn span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.book-btn:hover span {
+    padding-right: 25px;
+}
+
+.book-btn:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
