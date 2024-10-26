@@ -4,8 +4,10 @@ import PhoneInput from 'react-phone-number-input';
 import "react-phone-number-input/style.css";
 import clientService from "../../Features/clientService";
 import appointmentService from "../../Features/appointmentService";
+import {useNavigate} from "react-router-dom";
 
 export default function ClientInfo(){
+    const navigate = useNavigate();
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [phone, setPhone] = useState('');
@@ -44,6 +46,7 @@ export default function ClientInfo(){
         } catch (error) {
             console.error('Error creating client. Please try again.');
         }
+        navigate('/confirmation');
     }
 
     return (
