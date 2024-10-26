@@ -10,11 +10,11 @@
 
 .book-btn {
     position: absolute;
-    left: 65%;
-    top: 50%;
+    left: 60%;
+    top: 45%;
     background-color: #fff9f3;
     font-size: 16px;
-    padding: 10px 40px;
+    padding: 1% 5%;
     border: none;
     cursor: pointer;
     border-radius: 5px;

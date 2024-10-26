@@ -14,13 +14,14 @@ export default function Home (){
                     <img src="/images/home/2.png" alt="" />
                     <img src="/images/home/3.png" alt="" />
                     <img src="/images/home/4.png" alt="" />
+                    <div className="book">
+                        <img src ="/images/home/5.png" />
+                        <button className="book-btn" onClick ={() => navigate("/services")}>
+                            <span>Book Appointment</span>
+                        </button>
+                    </div>
                </div>
-                <div className="book">
-                    <img src ="/images/home/5.png" />
-                    <button className="book-btn" onClick ={() => navigate("/services")}>
-                        <span>Book Appointment</span>
-                    </button>
-                </div>
+
              </Col>
         </>
     );
