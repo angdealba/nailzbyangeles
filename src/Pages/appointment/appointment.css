@@ -1,0 +1,31 @@
+.calendar {
+    margin-left: 10%;
+    margin-top: 3%;
+}
+
+.availability {
+    margin-right: 10%;
+    margin-left: 10%;
+    margin-top: 3%;
+    background-color: #ecebeb;
+    padding: 2% 5% 5% 2%;
+}
+
+.time {
+    width: 120px;
+    background-color: white;
+    border: 3px solid #006edc;
+    border-radius: 10px;
+    padding: 2% 5% 2% 5%;
+    margin: 2%;
+    color: #006edc;
+    font-weight: bold;
+    text-align: center;
+}
+
+.time:hover {
+    border-color: #006edc;
+    color: white;
+    background-color: #006edc;
+}
+
