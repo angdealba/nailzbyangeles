@@ -9,7 +9,7 @@ export default function Home (){
     return (
         <>
             <Col>
-                <div className="home">
+                <div className="container">
                     <img src="/images/home/1.png" alt="" />
                     <img src="/images/home/2.png" alt="" />
                     <img src="/images/home/3.png" alt="" />
@@ -17,7 +17,7 @@ export default function Home (){
                     <div className="book">
                         <img src ="/images/home/5.png" />
                         <button className="book-btn" onClick ={() => navigate("/services")}>
-                            <span>Book Appointment</span>
+                            <span>Book Now!</span>
                         </button>
                     </div>
                </div>

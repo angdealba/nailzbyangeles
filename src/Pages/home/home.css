@@ -1,5 +1,4 @@
-
-.home img{
+.container img{
     width: 100%;
 }
 
@@ -10,11 +9,11 @@
 
 .book-btn {
     position: absolute;
-    left: 60%;
+    left: 65%;
     top: 45%;
     background-color: #fff9f3;
-    font-size: 16px;
-    padding: 1% 5%;
+    font-size: 1.5vw;
+    padding: 1% 5% 1% 5%;
     border: none;
     cursor: pointer;
     border-radius: 5px;
@@ -22,7 +21,7 @@
     color: #303F3C;
     box-shadow: 0 3px #a59a90;
     transition: all 0.5s;
-    cursor: pointer;
+    font-weight: bold;
 }
 
 .book-btn:hover {
@@ -38,11 +37,10 @@
 }
 
 .book-btn span:after {
-    content: '\00bb';
+    content: '\279C';
     position: absolute;
     opacity: 0;
     top: 0;
-    right: -20px;
     transition: 0.5s;
 }
 

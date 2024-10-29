@@ -24,7 +24,7 @@ export default function Services() {
     return (
         <>
 
-        <div className="home">
+        <div className="container">
             <div className="acc-container">
             <Accordion flush activeKey={activeKey} onSelect={handleAccordionToggle}>
                 <Accordion.Item eventKey="0">
@@ -186,8 +186,8 @@ export default function Services() {
                                     <div className="description">
                                         <p>
                                             Book this service if you already have an existing set and are looking to change the design! <br />
-                                            Please keep in mind, fill ins can only be done on MY work and are suggested to be booked after 2-3 weeks. <br />
-                                            Fills are usually $10-$15 less than a full set. After booking, please DM/text me for a finalized price! <br />
+                                            Fill ins can only be done on MY work and are suggested to be booked after 2-3 weeks. <br />
+                                            Please keep in mind this is the starting price for fills. After booking, please DM/text me for a finalized price! <br />
                                         </p>
                                      </div>
                                 </div>
@@ -197,7 +197,7 @@ export default function Services() {
                     <Accordion.Body>
                         <div className="service">
                             Fill-In
-                            <button className="select" onClick={() => handleSelect("Fill-In", null, null)}>Select</button>
+                            <button className="select" onClick={() => handleSelect("Fill-In", null, 40)}>Select</button>
                         </div>
                     </Accordion.Body>
                 </Accordion.Item>
