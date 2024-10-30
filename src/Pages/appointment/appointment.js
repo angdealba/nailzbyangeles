@@ -14,11 +14,12 @@ export default function Appointment(){
 
     function handleClickDay(value){
         setDate(value);
-        sessionStorage.setItem("date", value);
     }
 
     function handleSelect(time){
-        sessionStorage.setItem("time", time);
+        const dateWithTime = new Date(date);
+        dateWithTime.setHours(time, 0, 0, 0);
+        sessionStorage.setItem("date", dateWithTime);
         navigate("/clientInfo");
     }
 
