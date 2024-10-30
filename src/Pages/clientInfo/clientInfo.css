@@ -1,3 +1,57 @@
-.container{
-    margin: 100px;
+.client_info{
+    text-align: center;
+}
+
+form {
+    display: inline-block; /* Centers the form as a block */
+    text-align: left; /* Aligns the form content to the left */
+}
+
+label {
+    display: inline-flex;
+    align-items: center;
+    gap: 2%;
+    white-space: nowrap;
+}
+
+input {
+    padding: 1% 2%;
+    margin: 8px;
+    box-sizing: border-box;
+}
+
+.submit {
+    background-color: #f9f9f9;
+    float: right;
+    border: 1px solid gray;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #303F3C;
+    padding: 1% 7% 1% 7%;
+    box-shadow: 0 2px #a59a90;
+    margin: 3% 40% 3% 40%;
+}
+
+.submit:hover{
+    background-color: #ecebeb;
+}
+
+.submit:active {
+    background-color: #ecebeb;
+    box-shadow: 0 1px #666;
+    transform: translateY(4px);
+}
+
+.error {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+    display: flex;
+}
+
+.required:before {
+    content: " *";
+    color: red;
+    font-size: 1em;
+    float: left;
 }
