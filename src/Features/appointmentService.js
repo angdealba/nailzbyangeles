@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = '/api/appointments/'
+const API_URL = 'http://localhost:8000/api/appointments/'
 
 // Create new appointment
 const createAppointment = async (appointmentData) => {

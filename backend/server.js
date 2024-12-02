@@ -6,6 +6,8 @@ const express = require("express");
 connectDB();
 const app = express();
 const PORT = process.env.PORT;
+const cors = require('cors');
+app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded())
 
