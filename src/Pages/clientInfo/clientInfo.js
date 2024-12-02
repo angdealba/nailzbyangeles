@@ -6,6 +6,8 @@ import clientService from "../../Features/clientService";
 import appointmentService from "../../Features/appointmentService";
 import {useNavigate} from "react-router-dom";
 import validator from "validator";
+import isEmail from 'validator/lib/isEmail';
+import isMobilePhone from 'validator/lib/isMobilePhone';
 
 export default function ClientInfo(){
     const navigate = useNavigate();
