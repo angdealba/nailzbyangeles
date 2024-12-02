@@ -13,18 +13,18 @@ const getClients = asyncHandler (async (req, res) => {
 const createClient = asyncHandler (async (req, res) => {
 
     const { first_name, last_name, email, phone, instagram } = req.body
-    console.log(req.body)
     if(!first_name || !last_name || !email || !phone){
         res.status(400)
         throw new Error("Please add all fields")
     }
-
+    console.log("checking if client exists")
     const userExists = await Clients.findOne({ email })
     if(userExists) {
-        res.status(400)
-        throw new Error("Client already exists")
+        console.log("client exists")
+        res.status(204).json("Client already exists")
+        return
     }
-
+    console.log("didnt exit")
     const client = await Clients.create({first_name, last_name, email, phone, instagram})
     if (client) {
         res.status(201).json({
