@@ -11,9 +11,10 @@ app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded())
 
+
 app.use('/api/appointments', require('./routes/appointmentRoutes'));
 app.use('/api/clients', require('./routes/clientRoutes'));
-console.log(PORT)
+app.use('/api/stripe', require('./routes/stripeRoutes'));
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
