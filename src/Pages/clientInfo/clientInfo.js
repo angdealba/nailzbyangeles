@@ -83,7 +83,7 @@ export default function ClientInfo(){
         } catch (error) {
             console.error('Error creating client. Please try again.');
         }
-        navigate('/confirmation');
+        navigate('/payment');
     }
 
     return (
