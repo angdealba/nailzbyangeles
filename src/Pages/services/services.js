@@ -4,15 +4,16 @@ import "./services.css";
 import {useNavigate} from "react-router-dom";
 import React from "react";
 import {useState} from "react";
+import { useDispatch } from 'react-redux';
+import { setService } from '../../Features/bookingSlice';
 
 export default function Services() {
     const navigate = useNavigate();
     const [activeKey, setActiveKey] = useState(null);
+    const dispatch = useDispatch();
 
     function handleSelect(service, length, price){
-        sessionStorage.setItem('service', service);
-        sessionStorage.setItem('length', length);
-        sessionStorage.setItem('price', price);
+        dispatch(setService({name: service, length: length, price: price}))
         navigate("/appointment");
     }
 

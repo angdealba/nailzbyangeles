@@ -9,8 +9,13 @@ import validator from "validator";
 import isEmail from 'validator/lib/isEmail';
 import isMobilePhone from 'validator/lib/isMobilePhone';
 
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import {setAppointment, setClientInfo} from '../../Features/bookingSlice';
+
 export default function ClientInfo(){
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [phone, setPhone] = useState('');
@@ -21,7 +26,9 @@ export default function ClientInfo(){
     const monthFormatter = new Intl.DateTimeFormat('en-US', { month: 'long' });
     const [error, setError] = useState(false);
 
-    const date = new Date(sessionStorage.getItem("date"));
+    const service = useSelector((state) => state.service);
+    const date = new Date(useSelector((state) => state.appointment.date_time));
+    console.log(date)
     const hour = date.getHours() % 12 || 12
     const minutes = date.getMinutes().toString().padStart(2, "0");
     const period = date.getHours() >= 12 ? "PM" : "AM";
@@ -54,6 +61,16 @@ export default function ClientInfo(){
         e.preventDefault();
 
         if(error) return
+
+        dispatch(setClientInfo({
+            first_name: firstName,
+            last_name: lastName,
+            email: email,
+            phone: phone,
+            instagram: instagram
+        }));
+
+        dispatch(setAppointment({date_time: date, silent: silentAppt}));
 
         const clientData = {
             "first_name": firstName,
@@ -89,12 +106,9 @@ export default function ClientInfo(){
     return (
         <>
             <div className="client_info">
-                <h5>
-                    {sessionStorage.getItem("service")}
-                    {sessionStorage.getItem("length") && sessionStorage.getItem("length") !== "null" ?
-                        ` (${sessionStorage.getItem("length")}) ` : ""}
-                    - ${sessionStorage.getItem("price")}
-                </h5>
+                <h5>{service.name}
+                    {service.length != null && ` (${service.length})`}
+                    - ${service.price}</h5>
                 <h6>On {dayFormatter.format(date)}, {monthFormatter.format(date)} {date.getDate()} at {hour}:{minutes} {period}</h6>
                 <form onSubmit={handleSubmit}>
                     <div><label className="required"> First Name: <input required={true} id="firstName" autoComplete="given-name" onChange={e => setFirstName(e.target.value)}></input></label></div>

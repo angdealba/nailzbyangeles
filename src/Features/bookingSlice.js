@@ -3,9 +3,22 @@ import { createSlice } from '@reduxjs/toolkit';
 const bookingSlice = createSlice({
     name: 'booking',
     initialState: {
-        service: null,
-        appointment: null,
-        clientInfo: null,
+        service: {
+            name: "",
+            length: "",
+            price: ""
+        },
+        appointment: {
+            date_time: null,
+            silent: false
+        },
+        clientInfo: {
+            first_name: "",
+            last_name: "",
+            email: "",
+            phone: "",
+            instagram: ""
+        },
     },
     reducers: {
         setService: (state, action) => {
