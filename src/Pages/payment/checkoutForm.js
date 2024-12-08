@@ -2,11 +2,12 @@ import { PaymentElement } from "@stripe/react-stripe-js";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import {useState} from "react";
 import "./checkoutForm.css"
+import {useNavigate} from "react-router-dom";
 
-export default function CheckoutForm() {
+export default function CheckoutForm({onPaymentSuccess}) {
+    const navigate = useNavigate();
     const stripe = useStripe();
     const elements = useElements();
-    const [message, setMessage] = useState(null);
     const [isProcessing, setIsProcessing] = useState(false);
 
 
@@ -16,11 +17,12 @@ export default function CheckoutForm() {
         setIsProcessing(true);
         const { error } = await stripe.confirmPayment({
             elements,
-            confirmParams: {
-                return_url: `${window.location.origin}/confirmation`,
-            },
+            redirect: "if_required",
         });
         setIsProcessing(false);
+        onPaymentSuccess();
+        navigate('/confirmation');
+
     };
 
     return (
