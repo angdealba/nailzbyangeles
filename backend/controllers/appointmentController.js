@@ -30,6 +30,7 @@ const createAppointment = asyncHandler (async (req, res) => {
             res.status(404);
             throw new Error('Client not found');
         }
+
         const start_date = new Date(); //temporary
         const end_date = new Date(start_date.getTime() + 60 * 60 * 1000); //temporary
 
