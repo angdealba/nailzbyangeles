@@ -1,6 +1,7 @@
 const asyncHandler = require('express-async-handler')
 const Appointments = require('../model/appointmentModel')
 const Clients = require('../model/clientModel')
+const createEvent = require('../utils/googleCalendar');
 
 // @desc get Appointments
 // @route GET /api/appointments
@@ -29,6 +30,15 @@ const createAppointment = asyncHandler (async (req, res) => {
             res.status(404);
             throw new Error('Client not found');
         }
+        const start_date = new Date(); //temporary
+        const end_date = new Date(start_date.getTime() + 60 * 60 * 1000); //temporary
+
+        await createEvent({
+            summary: `Appointment with ${client.first_name} `,
+            description: `${service_id}`,
+            startDateTime: start_date.toISOString(),
+            endDateTime: end_date.toISOString(),
+        });
 
         res.status(201).json({
             _id: appointment.id,
