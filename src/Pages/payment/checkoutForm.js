@@ -15,13 +15,24 @@ export default function CheckoutForm({onPaymentSuccess}) {
         e.preventDefault();
 
         setIsProcessing(true);
-        const { error } = await stripe.confirmPayment({
+        const { paymentIntent, error } = await stripe.confirmPayment({
             elements,
             redirect: "if_required",
         });
         setIsProcessing(false);
-        onPaymentSuccess();
-        navigate('/confirmation');
+        if (error) {
+            console.error("Payment failed:", error.message);
+            alert("Payment failed: " + error.message); // Show error to user
+            return;
+        }
+        // Ensure payment was actually successful
+        if (paymentIntent.status === "succeeded") {
+            console.log("Payment successful! PaymentIntent ID:", paymentIntent.id);
+            onPaymentSuccess();
+            navigate('/confirmation'); // Redirect only if payment succeeded
+        } else {
+            console.warn("Payment was not completed yet. Status:", paymentIntent.status);
+        }
 
     };
 
