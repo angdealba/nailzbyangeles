@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:8000/api/clients/'
+const API_URL = process.env.REACT_APP_API_BASE_URL + '/clients/';
 
 // Create new client
 const createClient = async (clientData) => {

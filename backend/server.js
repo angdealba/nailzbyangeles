@@ -7,7 +7,9 @@ connectDB();
 const app = express();
 const PORT = process.env.PORT;
 const cors = require('cors');
-app.use(cors());
+
+//alow requests from front end
+app.use(cors({ origin: process.env.CLIENT_URL }));
 app.use(express.json())
 app.use(express.urlencoded())
 
@@ -19,7 +21,6 @@ app.use('/api/stripe', require('./routes/stripeRoutes'));
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
 });
-
 
 
 
