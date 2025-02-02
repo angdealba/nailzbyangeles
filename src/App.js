@@ -13,7 +13,16 @@ export default function App() {
     <div>
       <Router>
           <Navbar expand="md">
-              <Navbar.Brand className="mb-0 h1">NailzByAngeles</Navbar.Brand>
+              <Navbar.Brand href="#home">
+                  <img
+                      src="../public/images/home/brand.png"
+                      width="30"
+                      height="30"
+                      className="d-inline-block align-top"
+                      alt="Nailz By Angeles logo"
+                  />
+              </Navbar.Brand>
+              {/*<Navbar.Brand className="mb-0 h1">NailzByAngeles</Navbar.Brand>*/}
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="me-auto">
