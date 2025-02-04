@@ -28,7 +28,6 @@ export default function ClientInfo(){
 
     const service = useSelector((state) => state.service);
     const date = new Date(useSelector((state) => state.appointment.date_time));
-    console.log(date)
     const hour = date.getHours() % 12 || 12
     const minutes = date.getMinutes().toString().padStart(2, "0");
     const period = date.getHours() >= 12 ? "PM" : "AM";

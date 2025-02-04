@@ -8,6 +8,7 @@ import Nav from "react-bootstrap/Nav";
 import Appointment from "./Pages/appointment/appointment";
 import Confirmation from "./Pages/confirmation/confirmation";
 import Payment from "./Pages/payment/payment";
+import Portfolio from "./Pages/portfolio/portfolio"
 export default function App() {
   return (
     <div>
@@ -26,7 +27,7 @@ export default function App() {
                   <Nav className="me-auto">
                       <Nav.Link href="/">Home</Nav.Link>
                       <Nav.Link href="/services">Book An Appointment</Nav.Link>
-                      <Nav.Link href="/instagram">Portfolio</Nav.Link>
+                      <Nav.Link href="/portfolio">Portfolio</Nav.Link>
                   </Nav>
               </Navbar.Collapse>
           </Navbar>
@@ -37,6 +38,7 @@ export default function App() {
             <Route path = "/clientInfo" element = {<ClientInfo />} />
             <Route path = "/confirmation" element = {<Confirmation />} />
             <Route path = "/payment" element = {<Payment />} />
+            <Route path = "/portfolio" element = {<Portfolio />} />
         </Routes>
       </Router>
     </div>
