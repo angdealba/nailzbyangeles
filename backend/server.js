@@ -13,7 +13,10 @@ app.use(cors({ origin: process.env.CLIENT_URL }));
 app.use(express.json())
 app.use(express.urlencoded())
 
-
+//define route for cron-job to execute
+app.get('/', (req, res) => {
+    res.status(200).send(''); // Empty response
+});
 app.use('/api/appointments', require('./routes/appointmentRoutes'));
 app.use('/api/clients', require('./routes/clientRoutes'));
 app.use('/api/stripe', require('./routes/stripeRoutes'));
