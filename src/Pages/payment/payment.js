@@ -27,12 +27,25 @@ export default function Payment (){
             setClientSecret(clientSecret);
         });
     }, []);
-    
-    const handlePaymentSuccess = async () => {
-        try {
-            const client = await clientService.createClient(clientInfo);
-            console.log(`Client created successfully! ID: ${client._id}`);
 
+    const findClient = async (clientEmail) => {
+        try {
+
+            let client = await clientService.searchClient({email: clientInfo.email});
+            if (client._id) {
+                console.log(`Existing client found! ID: ${client._id}`);
+            } else {
+                client = await clientService.createClient(clientInfo);
+                console.log(`Client created successfully! ID: ${client._id}`);
+            }
+            return client
+        } catch (error) {
+            console.error('Error creating client. Please try again.', error.message);
+        }
+    }
+
+    const createAppointment = async (client, appointment) => {
+        try {
             const appointmentData = {
                 "client_id": client._id,
                 "service_id": client._id, //temporary,
@@ -41,15 +54,18 @@ export default function Payment (){
                 "silent": appointment.silent,
                 "details": "none"
             }
-            try {
-                const appointment = await appointmentService.createAppointment(appointmentData);
-                console.log(`Appointment created successfully! ID: ${appointment._id}`);
-            } catch (error) {
-                console.error('Error creating appointment. Please try again.');
-            }
-        } catch (error) {
-            console.error('Error creating client. Please try again.');
+            const newAppointment = await appointmentService.createAppointment(appointmentData);
+            console.log(`Appointment created successfully! ID: ${newAppointment._id}`);
         }
+        catch (error) {
+            console.error('Error creating client. Please try again.', error.message);
+        }
+
+    }
+
+    const handlePaymentSuccess = async () => {
+        const client = await findClient(clientInfo);
+        await createAppointment(client, appointment);
     };
 
     return (

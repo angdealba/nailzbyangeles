@@ -8,6 +8,27 @@ const getClients = asyncHandler (async (req, res) => {
     res.status(200).json(clients)
 })
 
+// @desc return exisiting client profile
+// @route POST /api/clients/search
+const getClient = asyncHandler (async (req, res) => {
+    console.log(req.body)
+    const { email } = req.body
+    if( !email){
+        res.status(400)
+        throw new Error("Please add client email")
+    }
+    console.log("checking if client exists")
+    const userExists = await Clients.findOne({ email })
+    if(userExists) {
+        console.log("client exists")
+        res.status(200).json(userExists)
+        return
+    }
+    else {
+        res.status(200).json()
+    }
+})
+
 // @desc create a new client profile
 // @route POST /api/clients
 const createClient = asyncHandler (async (req, res) => {
@@ -17,28 +38,22 @@ const createClient = asyncHandler (async (req, res) => {
         res.status(400)
         throw new Error("Please add all fields")
     }
-    console.log("checking if client exists")
-    const userExists = await Clients.findOne({ email })
-    if(userExists) {
-        console.log("client exists")
-        res.status(204).json("Client already exists")
-        return
-    }
-    console.log("didnt exit")
-    const client = await Clients.create({first_name, last_name, email, phone, instagram})
-    if (client) {
-        res.status(201).json({
-            _id: client.id,
-            first_name: client.first_name,
-            last_name: client.last_name,
-            email: client.email,
-            phone: client.phone,
-            instagram: client.instagram
-        })
-    } else {
-        res.status(400)
-        throw new Error('Invalid client data')
-    }
+
+        const client = await Clients.create({first_name, last_name, email, phone, instagram})
+        if (client) {
+            res.status(201).json({
+                _id: client.id,
+                first_name: client.first_name,
+                last_name: client.last_name,
+                email: client.email,
+                phone: client.phone,
+                instagram: client.instagram
+            })
+        } else {
+            res.status(400)
+            throw new Error('Invalid client data')
+        }
+
 })
 
 // @desc update existing client profile
@@ -56,5 +71,5 @@ const deleteClient = asyncHandler (async (req, res) => {
 
 
 module.exports = {
-    getClients, createClient, updateClient, deleteClient
+    getClients, getClient, createClient, updateClient, deleteClient
 }
