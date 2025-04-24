@@ -47,18 +47,19 @@ export default function Payment (){
     const createAppointment = async (client, appointment) => {
         try {
             const appointmentData = {
+                "event_id": appointment.id,
                 "client_id": client._id,
                 "service_id": client._id, //temporary,
                 "date_time": appointment.date_time,
                 "confirmed": false,
                 "silent": appointment.silent,
-                "details": "none"
+                "details": `Client contact info: ${client.email} ${client.phone}`
             }
             const newAppointment = await appointmentService.createAppointment(appointmentData);
             console.log(`Appointment created successfully! ID: ${newAppointment._id}`);
         }
         catch (error) {
-            console.error('Error creating client. Please try again.', error.message);
+            console.error('Error creating appointment. Please try again.', error.message);
         }
 
     }

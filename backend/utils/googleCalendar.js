@@ -29,29 +29,28 @@ const getAvailableSlots = async (date) => {
     }
 };
 
-const createEvent = async ({ summary, description, startDateTime, endDateTime }) => {
-    const event = {
-        summary,
-        description,
-        start: {
-            dateTime: startDateTime,
-            timeZone: 'America/New_York',
-        },
-        end: {
-            dateTime: endDateTime,
-            timeZone: 'America/New_York',
-        },
-    };
+const updateEvent = async ({ eventId, summary, description }) => {
+    const { data: event, headers } = await calendar.events.get({
+        calendarId,
+        eventId,
+    });
+    const etag = headers.etag; // You can also access this via event.etag
+    event.summary = summary
+    event.description = description
 
     try {
-        const response = await calendar.events.insert({
+        const response = await calendar.events.patch({
+            eventId: eventId,
             calendarId: calendarId,
             resource: event,
+            headers: {
+                'If-Match': etag,
+            },
         });
-        console.log('Event created: %s', response.data.htmlLink);
+        console.log('Calendar event updated: %s', response.data.htmlLink);
     } catch (error) {
-        console.error('Error creating calendar event:', error);
+        console.error('Error updating calendar event:', error);
     }
 };
 
-module.exports = { getAvailableSlots, createEvent }
+module.exports = { getAvailableSlots, updateEvent }

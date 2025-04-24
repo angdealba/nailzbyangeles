@@ -9,6 +9,7 @@ const bookingSlice = createSlice({
             price: ""
         },
         appointment: {
+            id: null,
             date_time: null,
             silent: false
         },

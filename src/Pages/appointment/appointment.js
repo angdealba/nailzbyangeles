@@ -38,9 +38,8 @@ export default function Appointment(){
         setDate(value);
     }
 
-    function handleSelect(time){
-        date.setHours(time, 0, 0, 0);
-        dispatch(setAppointment({date_time: date, silent: false}))
+    function handleSelect(slotId, date){
+        dispatch(setAppointment({id: slotId, date_time: new Date(date), silent: false}))
         navigate("/clientInfo");
     }
 
@@ -56,8 +55,8 @@ export default function Appointment(){
                 </Col>
                 <Col className="availability">
                     <h5>{dayFormatter.format(date)}, {monthFormatter.format(date)} {date.getDate()}</h5>
-                    {slots.map((slot) => (
-                        <button className="time" onClick={() => handleSelect("9")}>
+                    {slots.map((slot, index) => (
+                        <button key ={index} className="time" onClick={() => handleSelect(slot.id, slot.start)}>
                             {timeFormatter.format(new Date(slot.start))}
                         </button>
                     ))}

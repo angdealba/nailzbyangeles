@@ -1,7 +1,7 @@
 const asyncHandler = require('express-async-handler')
 const Appointments = require('../model/appointmentModel')
 const Clients = require('../model/clientModel')
-const { getAvailableSlots, createEvent } = require('../utils/googleCalendar');
+const { getAvailableSlots, updateEvent } = require('../utils/googleCalendar');
 
 // @desc get Available Appointment slots
 // @route GET /api/appointments/availability:date
@@ -21,8 +21,8 @@ const getAppointments = asyncHandler (async (req, res) => {
 // @route POST /api/appointments
 const createAppointment = asyncHandler (async (req, res) => {
 
-    const { client_id, service_id, date_time, confirmed, silent, details } = req.body
-    if(!client_id || !service_id || !date_time || silent === undefined){
+    const { event_id, client_id, service_id, date_time, confirmed, silent, details } = req.body
+    if(!event_id || !client_id || !service_id || !date_time || silent === undefined){
         res.status(400)
         throw new Error("Please add all fields")
     }
@@ -38,14 +38,10 @@ const createAppointment = asyncHandler (async (req, res) => {
             throw new Error('Client not found');
         }
 
-
-        const end_date = new Date(appointment.date_time.getTime() + 60 * 60 * 1000);
-
-        await createEvent({
+        await updateEvent({
+            eventId: event_id,
             summary: `Appointment with ${client.first_name} `,
-            description: `${service_id}`,
-            startDateTime: appointment.date_time.toISOString(),
-            endDateTime: end_date.toISOString(),
+            description: `Service: ${service_id} ${appointment.details}`
         });
 
         res.status(201).json({
