@@ -69,7 +69,6 @@ export default function ClientInfo(){
             instagram: instagram
         }));
 
-        dispatch(setAppointment({date_time: date, silent: silentAppt}));
         navigate('/payment');
     }
 

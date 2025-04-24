@@ -22,9 +22,8 @@ export default function Appointment(){
     }
 
     function handleSelect(time){
-        const dateWithTime = new Date(date);
-        dateWithTime.setHours(time, 0, 0, 0);
-        dispatch(setAppointment({date_time: dateWithTime, silent: false}))
+        date.setHours(time, 0, 0, 0);
+        dispatch(setAppointment({date_time: date, silent: false}))
         navigate("/clientInfo");
     }
 

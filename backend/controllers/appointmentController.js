@@ -31,13 +31,13 @@ const createAppointment = asyncHandler (async (req, res) => {
             throw new Error('Client not found');
         }
 
-        const start_date = new Date(); //temporary
-        const end_date = new Date(start_date.getTime() + 60 * 60 * 1000); //temporary
+
+        const end_date = new Date(appointment.date_time.getTime() + 60 * 60 * 1000);
 
         await createEvent({
             summary: `Appointment with ${client.first_name} `,
             description: `${service_id}`,
-            startDateTime: start_date.toISOString(),
+            startDateTime: appointment.date_time.toISOString(),
             endDateTime: end_date.toISOString(),
         });
 

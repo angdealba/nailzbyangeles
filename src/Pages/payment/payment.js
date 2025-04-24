@@ -49,7 +49,7 @@ export default function Payment (){
             const appointmentData = {
                 "client_id": client._id,
                 "service_id": client._id, //temporary,
-                "date_time": appointment.date_time, //temporary
+                "date_time": appointment.date_time,
                 "confirmed": false,
                 "silent": appointment.silent,
                 "details": "none"
