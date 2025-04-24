@@ -1,4 +1,33 @@
 const calendar = require('../config/googleAuth');
+require('dotenv').config()
+const calendarId = process.env.CALENDAR_ID;
+
+const getAvailableSlots = async (date) => {
+    const start = new Date(date);
+    start.setHours(0, 0, 0, 0);
+    const end = new Date(start);
+    end.setDate(end.getDate() + 1);
+    console.log("google cal:",start,  end)
+    try {
+        const response = await calendar.events.list({
+            calendarId,
+            timeMin: start.toISOString(),
+            timeMax: end.toISOString(),
+            q: 'Available', // Search for events marked "Available"
+            singleEvents: true,
+            orderBy: 'startTime',
+        });
+
+        return response.data.items.map((event) => ({
+            id: event.id,
+            start: event.start.dateTime || event.start.date,
+            end: event.end.dateTime || event.end.date,
+        }));
+    } catch (error) {
+        console.error('Error fetching available slots:', error);
+        return [];
+    }
+};
 
 const createEvent = async ({ summary, description, startDateTime, endDateTime }) => {
     const event = {
@@ -16,7 +45,7 @@ const createEvent = async ({ summary, description, startDateTime, endDateTime })
 
     try {
         const response = await calendar.events.insert({
-            calendarId: 'angeles.dealba6734@gmail.com',
+            calendarId: calendarId,
             resource: event,
         });
         console.log('Event created: %s', response.data.htmlLink);
@@ -25,4 +54,4 @@ const createEvent = async ({ summary, description, startDateTime, endDateTime })
     }
 };
 
-module.exports = createEvent;
+module.exports = { getAvailableSlots, createEvent }

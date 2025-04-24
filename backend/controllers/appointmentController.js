@@ -1,7 +1,14 @@
 const asyncHandler = require('express-async-handler')
 const Appointments = require('../model/appointmentModel')
 const Clients = require('../model/clientModel')
-const createEvent = require('../utils/googleCalendar');
+const { getAvailableSlots, createEvent } = require('../utils/googleCalendar');
+
+// @desc get Available Appointment slots
+// @route GET /api/appointments/availability:date
+const getAvailability = asyncHandler (async (req, res) => {
+    const slots = await getAvailableSlots(req.params.date)
+    res.status(200).json(slots)
+})
 
 // @desc get Appointments
 // @route GET /api/appointments
@@ -72,5 +79,5 @@ const deleteAppointment = asyncHandler (async (req, res) => {
 
 
 module.exports = {
-    getAppointments, createAppointment, updateAppointment, deleteAppointment
+    getAvailability, getAppointments, createAppointment, updateAppointment, deleteAppointment
 }
