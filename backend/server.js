@@ -1,4 +1,3 @@
-
 const dotenv = require('dotenv').config({ path: './backend/.env' });
 const connectDB = require('./config/dbConfig');
 const express = require("express");
@@ -20,6 +19,7 @@ app.get('/', (req, res) => {
 app.use('/api/appointments', require('./routes/appointmentRoutes'));
 app.use('/api/clients', require('./routes/clientRoutes'));
 app.use('/api/stripe', require('./routes/stripeRoutes'));
+app.use('/api/services', require('./routes/servicesRoutes'));
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
