@@ -39,7 +39,8 @@ export default function Appointment(){
     }
 
     function handleSelect(slotId, date){
-        dispatch(setAppointment({id: slotId, date_time: new Date(date), silent: false}))
+        console.log("appt selected:", slotId)
+        dispatch(setAppointment({gcal_event_id: slotId, date_time: new Date(date), silent: false}))
         navigate("/clientInfo");
     }
 

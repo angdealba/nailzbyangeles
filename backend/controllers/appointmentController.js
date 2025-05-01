@@ -21,8 +21,8 @@ const getAppointments = asyncHandler (async (req, res) => {
 // @route POST /api/appointments
 const createAppointment = asyncHandler (async (req, res) => {
 
-    const { event_id, client_id, service_id, date_time, confirmed, silent, details } = req.body
-    if(!event_id || !client_id || !service_id || !date_time || silent === undefined){
+    const { gcal_event_id, client_id, service_id, date_time, confirmed, silent, details } = req.body
+    if(!gcal_event_id || !client_id || !service_id || !date_time || silent === undefined){
         res.status(400)
         throw new Error("Please add all fields")
     }
@@ -39,9 +39,8 @@ const createAppointment = asyncHandler (async (req, res) => {
         }
 
         await updateEvent({
-            eventId: event_id,
-            summary: `Appointment with ${client.first_name} `,
-            description: `Service: ${service_id} ${appointment.details}`
+            eventId: gcal_event_id,
+            summary: `Appointment with ${client.first_name} `
         });
 
         res.status(201).json({

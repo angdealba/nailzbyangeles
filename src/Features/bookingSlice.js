@@ -4,12 +4,13 @@ const bookingSlice = createSlice({
     name: 'booking',
     initialState: {
         service: {
+            id: null,
             name: "",
             length: "",
             price: ""
         },
         appointment: {
-            id: null,
+            gcal_event_id: null,
             date_time: null,
             silent: false
         },

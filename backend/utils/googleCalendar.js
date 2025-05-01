@@ -7,7 +7,6 @@ const getAvailableSlots = async (date) => {
     start.setHours(0, 0, 0, 0);
     const end = new Date(start);
     end.setDate(end.getDate() + 1);
-    console.log("google cal:",start,  end)
     try {
         const response = await calendar.events.list({
             calendarId,

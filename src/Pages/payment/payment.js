@@ -12,6 +12,7 @@ export default function Payment (){
     const [clientSecret, setClientSecret] = useState("")
     const clientInfo = useSelector((state) => state.clientInfo)
     const appointment = useSelector((state) => state.appointment)
+    const service = useSelector((state) => state.service)
 
     useEffect(() => {
         stripeService.configStripe().then(async (r) => {
@@ -44,16 +45,16 @@ export default function Payment (){
         }
     }
 
-    const createAppointment = async (client, appointment) => {
+    const createAppointment = async (client, appointment, service) => {
         try {
             const appointmentData = {
-                "event_id": appointment.id,
+                "gcal_event_id": appointment.gcal_event_id,
                 "client_id": client._id,
-                "service_id": client._id, //temporary,
+                "service_id": service.id,
                 "date_time": appointment.date_time,
                 "confirmed": false,
                 "silent": appointment.silent,
-                "details": `Client contact info: ${client.email} ${client.phone}`
+                "details": `${service.name}-${service.length} $${service.price} \\nClient contact info: ${client.email} ${client.phone}`
             }
             const newAppointment = await appointmentService.createAppointment(appointmentData);
             console.log(`Appointment created successfully! ID: ${newAppointment._id}`);
@@ -66,7 +67,7 @@ export default function Payment (){
 
     const handlePaymentSuccess = async () => {
         const client = await findClient(clientInfo);
-        await createAppointment(client, appointment);
+        await createAppointment(client, appointment, service);
     };
 
     return (
