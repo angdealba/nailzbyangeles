@@ -3,6 +3,7 @@ import { useStripe, useElements } from "@stripe/react-stripe-js";
 import {useState} from "react";
 import "./checkoutForm.css"
 import {useNavigate} from "react-router-dom";
+import { Button } from "../../components/ui/button"
 
 export default function CheckoutForm({onPaymentSuccess}) {
     const navigate = useNavigate();
@@ -38,12 +39,8 @@ export default function CheckoutForm({onPaymentSuccess}) {
 
     return (
         <form id="payment-form" onSubmit={handleSubmit}>
-            <PaymentElement id="payment-element" />
-            <button className = "pay-now" disabled={isProcessing || !stripe || !elements} id="submit">
-        <span id="button-text">
-          {isProcessing ? "Processing ... " : "Pay now"}
-        </span>
-            </button>
+            <PaymentElement id="payment-element" className="mb-4" />
+            <Button disabled={isProcessing || !stripe || !elements} type="submit" > {isProcessing ? "Processing ... " : "Pay now"}</Button>
         </form>
     );
 }

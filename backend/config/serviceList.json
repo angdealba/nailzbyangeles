@@ -1,0 +1,141 @@
+[
+  {
+    "service_name": "Gel Manicure",
+    "description": " This service includes dry manicure/prep of 15-20 minutes, topped of with your choice of gel polish and clear top coat!",
+    "duration": 40,
+    "basePrice": 20,
+    "hasLengthOptions": false,
+    "lengths": []
+  },
+  {
+    "service_name": "Single Color Set",
+    "description": "Solid color acrylic set—perfect for a simple, yet elegant look! Any color/length/shape. ",
+    "duration": 50,
+    "basePrice": 40,
+    "hasLengthOptions": true,
+    "lengths": [
+      {
+        "length": "Short",
+        "price": 0,
+        "duration": 0
+      },
+      {
+        "length": "Medium",
+        "price": 10,
+        "duration": 10
+      },
+      {
+        "length": "Long",
+        "price": 20,
+        "duration": 10
+      },
+      {
+        "length": "XL",
+        "price": 30,
+        "duration": 20
+      }
+    ]
+  },
+  {
+  "service_name": "French Tip Set",
+  "description": "Acrylic full set of french tip nails—perfect for a timeless, elegant look!",
+  "duration": 90,
+  "basePrice": 50,
+  "hasLengthOptions": true,
+  "lengths": [
+    {
+      "length": "Short",
+      "price": 0,
+      "duration": 0
+    },
+    {
+      "length": "Medium",
+      "price": 10,
+      "duration": 30
+    },
+    {
+      "length": "Long",
+      "price": 20,
+      "duration": 40
+    },
+    {
+      "length": "XL",
+      "price": 30,
+      "duration": 50
+    }]
+  },
+  {
+    "service_name": "Inspiration Picture Set",
+    "description": "Custom acrylic set designed to match your inspiration photo. Final pricing may vary depending on design complexity. Be ready to upload your photo when filling out the booking form.",
+    "duration": 120,
+    "basePrice": 40,
+    "hasLengthOptions": true,
+    "lengths": [
+      {
+        "length": "Short",
+        "price": 0,
+        "duration": 0
+      },
+      {
+        "length": "Medium",
+        "price": 10,
+        "duration": 30
+      },
+      {
+        "length": "Long",
+        "price": 20,
+        "duration": 30
+      },
+      {
+        "length": "XL",
+        "price": 30,
+        "duration": 60
+      }
+    ]
+  },
+  {
+    "service_name": "Freestyle Set",
+    "description": "Custom acrylic set where I take creative direction to design a unique look for any occasion. You’re welcome to provide a general theme or color palette, or leave the design entirely up to me. This option is ideal for clients who trust my artistic vision and want to eliminate the pressure of choosing a design!",
+    "duration": 120,
+    "basePrice": 55,
+    "hasLengthOptions": true,
+    "lengths": [
+      {
+        "length": "Short",
+        "price": 0,
+        "duration": 0
+      },
+      {
+        "length": "Medium",
+        "price": 10,
+        "duration": 30
+      },
+      {
+        "length": "Long",
+        "price": 20,
+        "duration": 30
+      },
+      {
+        "length": "XL",
+        "price": 30,
+        "duration": 60
+      }
+    ]
+  },
+  {
+    "service_name": "Fill-In",
+    "description": "Acrylic refill and redesign for clients with an existing set. Suggested to be booked after 2-3 weeks. Final pricing may vary depending on design complexity and the condition of the existing set. Be ready to upload a photo of your desired design when filling out the booking form.",
+    "duration": 90,
+    "basePrice": 40,
+    "hasLengthOptions": false,
+    "lengths": []
+  },
+  {
+    "service_name": "Acrylic Overlay",
+    "description": "Acrylic applied directly to the natural nail for added strength and durability, perfect for anyone looking to grow out their natural nails. Final pricing may vary depending on design complexity",
+    "duration": 90,
+    "basePrice": 35,
+    "hasLengthOptions": false,
+    "lengths": []
+  }
+]

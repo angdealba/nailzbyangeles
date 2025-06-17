@@ -20,7 +20,6 @@ const getAppointments = asyncHandler (async (req, res) => {
 // @desc create Appointment
 // @route POST /api/appointments
 const createAppointment = asyncHandler (async (req, res) => {
-
     const { gcal_event_id, client_id, service_id, date_time, confirmed, silent, details } = req.body
     if(!gcal_event_id || !client_id || !service_id || !date_time || silent === undefined){
         res.status(400)
@@ -40,7 +39,8 @@ const createAppointment = asyncHandler (async (req, res) => {
 
         await updateEvent({
             eventId: gcal_event_id,
-            summary: `Appointment with ${client.first_name} `
+            summary: `Appointment with ${client.first_name} ${client.last_name} `,
+            description: `${appointment.details}`
         });
 
         res.status(201).json({

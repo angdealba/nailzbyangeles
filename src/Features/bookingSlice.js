@@ -5,21 +5,23 @@ const bookingSlice = createSlice({
     initialState: {
         service: {
             id: null,
-            name: "",
-            length: "",
-            price: ""
+            name: null,
+            length: null,
+            price: null,
+            duration: null
         },
         appointment: {
             gcal_event_id: null,
             date_time: null,
-            silent: false
+            silent: false,
+            details: null
         },
         clientInfo: {
-            first_name: "",
-            last_name: "",
-            email: "",
-            phone: "",
-            instagram: ""
+            first_name: null,
+            last_name: null,
+            email: null,
+            phone: null,
+            instagram: null
         },
     },
     reducers: {
@@ -27,7 +29,10 @@ const bookingSlice = createSlice({
             state.service = action.payload;
         },
         setAppointment: (state, action) => {
-            state.appointment = action.payload;
+            state.appointment = {
+                ...state.appointment,
+                ...action.payload
+            };
         },
         setClientInfo: (state, action) => {
             state.clientInfo = action.payload;

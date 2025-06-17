@@ -1,7 +1,14 @@
 import axios from 'axios'
 
-const API_URL = process.env.REACT_APP_API_BASE_URL + '/stripe/';
-
+let API_URL = ""
+console.log(process.env.REACT_APP_MODE)
+if (process.env.REACT_APP_MODE === "test"){
+    API_URL = "http://localhost:8000/api/stripe/"
+}
+else {
+    API_URL = process.env.REACT_APP_API_BASE_URL + '/stripe/';
+}
+console.log(API_URL)
 // Create new client
 const configStripe = async () => {
     const response = await axios.get(`${API_URL}config`)
