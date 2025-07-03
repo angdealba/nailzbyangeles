@@ -6,7 +6,9 @@ const { getAvailableSlots, updateEvent } = require('../utils/googleCalendar');
 // @desc get Available Appointment slots
 // @route GET /api/appointments/availability:date
 const getAvailability = asyncHandler (async (req, res) => {
+    console.log("received date param in appt controller", req.params.date)
     const slots = await getAvailableSlots(req.params.date)
+    console.log("returning slots in apptcontroller", slots)
     res.status(200).json(slots)
 })
 

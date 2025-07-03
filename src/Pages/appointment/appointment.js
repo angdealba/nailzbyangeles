@@ -22,6 +22,7 @@ export default function Appointment(){
     useEffect(() => {
         const fetchSlots = async () => {
             const data = await appointmentService.getAvailability(date);
+            console.log("appointment page has fetched slots", data)
             setSlots(data);
         };
 

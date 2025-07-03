@@ -3,10 +3,12 @@ require('dotenv').config()
 const calendarId = process.env.CALENDAR_ID;
 
 const getAvailableSlots = async (date) => {
+    console.log("date in google cal", date)
     const start = new Date(date);
     start.setHours(0, 0, 0, 0);
     const end = new Date(start);
     end.setDate(end.getDate() + 1);
+    console.log("searching for dates start to end: ", start, end);
     try {
         const response = await calendar.events.list({
             calendarId,
