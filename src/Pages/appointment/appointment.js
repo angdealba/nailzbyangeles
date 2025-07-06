@@ -21,7 +21,7 @@ export default function Appointment(){
 
     useEffect(() => {
         const fetchSlots = async () => {
-            const data = await appointmentService.getAvailability(date);
+            const data = await appointmentService.getAvailability(format(date, 'yyyy-MM-dd'));
             setSlots(data);
         };
 
@@ -36,6 +36,7 @@ export default function Appointment(){
     }
 
     function handleContinue(){
+        console.log(selectedSlot, selectedSlot.start)
         dispatch(setAppointment({gcal_event_id: selectedSlot.id, date_time: new Date(selectedSlot.start), silent: false}))
         navigate("/clientInfo");
     }

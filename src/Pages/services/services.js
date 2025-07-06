@@ -42,7 +42,7 @@ export default function Services() {
                 API_URL = "http://localhost:8000/api/services/"
             }
             else {
-                API_URL = process.env.REACT_APP_API_BASE_URL + '/clients/';
+                API_URL = process.env.REACT_APP_API_BASE_URL + '/services/';
             }
             try {
                 const response = await axios.get(API_URL);
@@ -125,10 +125,10 @@ export default function Services() {
                                         className="flex justify-between items-center text-sm text-muted-foreground  px-4 py-2 min-h-10 h-10">
                                         <div className="flex items-center gap-2">
                                             <Clock className="h-4 w-4"/>
-                                            <span>{service.duration + (service.lengths[selectedLength] && selectedService === index ? service.lengths[selectedLength].duration : 0)} minutes</span>
+                                            <span>{service.duration + (selectedService === index && selectedLength !== null ? service.lengths[selectedLength].duration : 0)} minutes</span>
                                         </div>
                                         <div
-                                            className="font-semibold text-lg text-black">${service.basePrice + (service.lengths[selectedLength] && selectedService === index ? service.lengths[selectedLength].price : 0)}</div>
+                                            className="font-semibold text-lg text-black">${service.basePrice + (selectedService === index && selectedLength !== null ? service.lengths[selectedLength].price : 0)}</div>
 
                                     </CardFooter>
                                 </Card>
